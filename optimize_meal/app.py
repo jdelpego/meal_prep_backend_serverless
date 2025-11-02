@@ -168,8 +168,8 @@ def optimize_meal_prep(request: MealRequest):
     
 
     # Round all results to 2 decimal places
-    targets_dict = {k: round(v, 2) for k, v in targets_dict.items()}
-    results_dict = {k: round(v, 2) for k, v in results_dict.items()}
+    targets_dict = {k: round(v, 1) for k, v in targets_dict.items()}
+    results_dict = {k: round(v, 1) for k, v in results_dict.items()}
     
     macro_score = max(0.0, 100.0 - (2.0 / 3.0) * sum(abs(results_dict[k] - targets_dict[k]) for k in ("carbs_percent", "protein_percent", "fat_percent")))
     micros = PRESETS["daily_values"]["micronutrients"]
@@ -183,7 +183,7 @@ def optimize_meal_prep(request: MealRequest):
         "recipe": {food: round(x[i], 1) for i, food in enumerate(foods)},
         "nutrition_targets": targets_dict,
         "nutrition_results": results_dict,
-        "scores": {"macro": round(macro_score, 2), "micro": round(micro_score, 2)},
+        "scores": {"macro": round(macro_score, 0), "micro": round(micro_score, 0)},
     }
     result["nutrition_targets"]["kcalories"] = kcalories
     suggested_ingredients = find_missing_ingredient(request, result)
