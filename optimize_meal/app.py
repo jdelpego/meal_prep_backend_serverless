@@ -180,7 +180,7 @@ def optimize_meal_prep(request: MealRequest):
 
     # Result in grams
     result = {
-        "recipe": {food: round(x[i], 1) for i, food in enumerate(foods)},
+        "recipe": [{"name": food, "quantity": round(x[i], 1)} for i, food in enumerate(foods)],
         "nutrition_targets": targets_dict,
         "nutrition_results": results_dict,
         "scores": {"macro": round(macro_score, 0), "micro": round(micro_score, 0)},
