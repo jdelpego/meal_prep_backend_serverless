@@ -1,8 +1,7 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
-Description: >
+Description: |
   Meal Optimization AWS Lambda and Amazon API Gateway REST API
-
   This project optimizes meal preparation by using a Lambda function triggered by API Gateway.
 
 # More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
@@ -31,11 +30,11 @@ Outputs:
   # Find out more about other implicit resources you can reference within SAM
   # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
   OptimizeMealApi:
-    Description: "API Gateway endpoint URL for Prod stage for Optimize Meal function"
-    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.${AWS::URLSuffix}/Prod/optimize_meal/"
+    Description: API Gateway endpoint URL for Prod stage for Optimize Meal function
+    Value: !Sub https://${ServerlessRestApi}.execute-api.${AWS::Region}.${AWS::URLSuffix}/Prod/optimize_meal/
   OptimizeMealFunction:
-    Description: "Optimize Meal Lambda Function ARN"
+    Description: Optimize Meal Lambda Function ARN
     Value: !GetAtt OptimizeMealFunction.Arn
   OptimizeMealFunctionIamRole:
-    Description: "Implicit IAM Role created for Optimize Meal function"
+    Description: Implicit IAM Role created for Optimize Meal function
     Value: !GetAtt OptimizeMealFunctionRole.Arn
