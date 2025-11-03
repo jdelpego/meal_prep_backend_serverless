@@ -20,7 +20,7 @@ class MealRequest(BaseModel):
 def find_missing_ingredient(request: MealRequest, result: json):
     """Suggests missing ingredients to fill micronutrient gaps."""
     # 1️⃣ Run optimizer
-    if(result['scores']['micro'] > 90.0 and len(request.foods) > 4):
+    if(result['scores']['micro'] > 85.0 and len(request.foods) > 4):
         return {"ingredients": []}
 
     results = result["nutrition_results"]
